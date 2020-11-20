@@ -1,0 +1,49 @@
+Cantidad de elementos:
+
+Datos elemento 0:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 1:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 2:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 3:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 4:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 5:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 6:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 7:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 8:
+Peso: 
+Valor: 
+Cantidad: 
+Datos elemento 9:
+Peso: 
+Valor: 
+Cantidad: 
+Tope mochila:
+
+Cantidad del elemento 0 (Peso: 1, valor: 10): 2
+Cantidad del elemento 5 (Peso: 1, valor: 10): 1
+Cantidad del elemento 8 (Peso: 2, valor: 9): 1
+Valor total: 39
+Peso optimo: 0

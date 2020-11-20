@@ -1,6 +1,8 @@
-// Mochila 0-1
+// Mochila 0-N
+
 #include <cstring>
 #include <iostream>
+#include <fstream>
 #include <string>
 using namespace std;
 #define INF 99999
@@ -14,13 +16,13 @@ public:
   Elemento(int peso, int valor, int cantidad) : peso(peso), valor(valor), cantidad(cantidad) {}
 };
 
-void mochilaBT(Elemento **vecElem, int cantElementos, int posElem, int topeMochila, Elemento **solActual, int valActual, Elemento **&solOptima, int &valOptimo)
+void mochilaBT(Elemento **vecElem, int cantElementos, int posElem, int topeMochila, Elemento **solActual, int valActual, Elemento **&solOptima, int &valOptimo, int &pesoOptimo)
 {
-  // Procesé a todos lols elementos!
+  // Procesé a todos los elementos!
   if (posElem == cantElementos)
   {
     // Mi solución es mejor
-    if (valActual > valOptimo)
+    if (valActual > valOptimo || (valActual == valOptimo && topeMochila > pesoOptimo))
     {
       // Actualizo el mejor valor y las combinaciones que me llevaron al mismo
       valOptimo = valActual;
@@ -28,26 +30,36 @@ void mochilaBT(Elemento **vecElem, int cantElementos, int posElem, int topeMochi
       {
         solOptima[i]->cantidad = solActual[i]->cantidad;
       }
+      pesoOptimo = topeMochila;
     }
   }
   else
   {
-    // Uso 0 elementos del elemento actual
-    mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo);
-    // Uso una vez a mi elemento actual
-    topeMochila -= vecElem[posElem]->peso;
-    if (topeMochila >= 0)
+    for (int k = 0; k <= vecElem[posElem]->cantidad; k++)
     {
-      solActual[posElem]->cantidad++;
-      valActual += vecElem[posElem]->valor;
-      mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo);
-      solActual[posElem]->cantidad--;
+      topeMochila -= vecElem[posElem]->peso * k;
+      if (topeMochila >= 0)
+      {
+        solActual[posElem]->cantidad += k;
+        valActual += vecElem[posElem]->valor * k;
+        mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo, pesoOptimo);
+        valActual -= vecElem[posElem]->valor * k;
+        solActual[posElem]->cantidad -= k;
+      }
+      else
+        break;
+      topeMochila += vecElem[posElem]->peso * k;
     }
   }
 }
 
 int main()
 {
+  ifstream myFile("testMochila0N.in.txt");
+  cin.rdbuf(myFile.rdbuf());
+  ofstream myFile2("out.txt");
+  cout.rdbuf(myFile2.rdbuf());
+
   int cantElementos;
   cout << "Cantidad de elementos:" << endl;
   cin >> cantElementos;
@@ -64,7 +76,10 @@ int main()
     int valor;
     cout << "Valor: " << endl;
     cin >> valor;
-    vecElem[i] = new Elemento(peso, valor);
+    int cantidad;
+    cout << "Cantidad: " << endl;
+    cin >> cantidad;
+    vecElem[i] = new Elemento(peso, valor, cantidad);
     solActual[i] = new Elemento(peso, valor, 0);
     solOptima[i] = new Elemento(peso, valor, 0);
   }
@@ -73,7 +88,8 @@ int main()
   cin >> topeMochila;
   cout << endl;
   int valOptimo = 0;
-  mochilaBT(vecElem, cantElementos, 0, topeMochila, solActual, 0, solOptima, valOptimo);
+  int pesoOptimo = 0;
+  mochilaBT(vecElem, cantElementos, 0, topeMochila, solActual, 0, solOptima, valOptimo, pesoOptimo);
 
   for (int i = 0; i < cantElementos; i++)
   {
@@ -84,4 +100,5 @@ int main()
     }
   }
   cout << "Valor total: " << valOptimo << endl;
+  cout << "Peso optimo: " << pesoOptimo << endl;
 }
