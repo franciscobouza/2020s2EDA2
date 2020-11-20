@@ -1,4 +1,4 @@
-// By Santiago Bolumburu (+1)
+// Mochila 0-1 SIN TERMINAR!
 
 #include <cstring>
 #include <iostream>
@@ -36,11 +36,14 @@ void mochilaBT(Elemento **vecElem, int cantElementos, int posElem, int topeMochi
     // Uso 0 elementos del elemento actual
     mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo);
     // Uso una vez a mi elemento actual
-    solActual[posElem]->cantidad++;
-    valActual += vecElem[posElem]->valor;
     topeMochila -= vecElem[posElem]->peso;
-    mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo);
-    solActual[posElem]->cantidad--;
+    if (topeMochila > 0)
+    {
+      solActual[posElem]->cantidad++;
+      valActual += vecElem[posElem]->valor;
+      mochilaBT(vecElem, cantElementos, posElem + 1, topeMochila, solActual, valActual, solOptima, valOptimo);
+      solActual[posElem]->cantidad--;
+    }
   }
 }
 
