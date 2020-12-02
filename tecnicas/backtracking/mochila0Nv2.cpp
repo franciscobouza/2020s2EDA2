@@ -101,4 +101,5 @@ int main()
   }
   cout << "Valor total: " << valOptimo << endl;
   cout << "Peso optimo: " << pesoOptimo << endl;
+  return 0;
 }

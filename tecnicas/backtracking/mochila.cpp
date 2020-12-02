@@ -84,4 +84,5 @@ int main()
     }
   }
   cout << "Valor total: " << valOptimo << endl;
+  return 0;
 }
