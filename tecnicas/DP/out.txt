@@ -19,3 +19,5 @@ Valor mochila: 15
 0	0	3	6	6	9	9	9	9	
 0	0	3	6	6	9	12	12	15	
 0	0	3	6	6	9	12	12	15	
+Peso: 6 Valor: 12
+Peso: 2 Valor: 3

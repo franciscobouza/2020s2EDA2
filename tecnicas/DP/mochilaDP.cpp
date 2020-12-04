@@ -64,6 +64,21 @@ void mochilaDP(Elemento **vecElem, int cantElementos, int topeMochila)
     }
     cout << endl;
   }
+
+  int i = cantElementos - 1, j = topeMochila;
+  while (i != 0 && j != 0)
+  {
+    if (mat[i][j] != mat[i - 1][j])
+    {
+      cout << "Peso: " << vecElem[i]->peso << " Valor: " << vecElem[i]->valor << endl;
+      j -= vecElem[i]->peso;
+    }
+    i--;
+  }
+  if (j != 0)
+  {
+    cout << "Peso: " << vecElem[0]->peso << " Valor: " << vecElem[0]->valor << endl;
+  }
 }
 
 int main()
