@@ -1,0 +1,21 @@
+Cantidad de elementos:
+
+Datos elemento 0:
+Peso: 
+Valor: 
+Datos elemento 1:
+Peso: 
+Valor: 
+Datos elemento 2:
+Peso: 
+Valor: 
+Datos elemento 3:
+Peso: 
+Valor: 
+Tope mochila:
+
+Valor mochila: 15
+0	0	3	3	3	3	3	3	3	
+0	0	3	6	6	9	9	9	9	
+0	0	3	6	6	9	12	12	15	
+0	0	3	6	6	9	12	12	15	
